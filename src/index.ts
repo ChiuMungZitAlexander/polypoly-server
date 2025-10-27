@@ -1,7 +1,12 @@
 import { Elysia } from "elysia";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+import { eventsRouter } from "./modules/events";
+
+const app = new Elysia()
+  .all("/", () => "Welcome to PolyPoly server")
+  .use(eventsRouter)
+  .listen(process.env.PORT || 3000);
 
 console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+  `PolyPoly server is running at ${app.server?.hostname}:${app.server?.port}`
 );
